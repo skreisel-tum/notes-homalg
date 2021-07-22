@@ -1,0 +1,324 @@
+\section{Categories}
+
+\textbf{Kernel, Image, Cokernel in \textsc{Ab}.} \ Let $\mathcal{C} = \textsc{Ab}$ be the category of abelian groups and $f: X \to Y$ a (group) (homo)morphism.
+\begin{itemize}
+\item $\text{kern}(f) \subseteq X$, the kernel of $f$ is the subgroup (object) of $X$ containing those elements $x \in X$ such that $f(x) = 0$.
+\item $\text{im}(f) \subseteq Y$, the image of $f$, is the subgroup (object) of $Y$ containing those elements $y \in Y$ such that $y = f(x)$ for some $x \in X$.
+\item $\text{cokern}(f) = Y/\text{im}(f)$ is the quotient of $Y$ by the image of $f$.
+\end{itemize}
+
+\textbf{Faithful Functor.} \ A functor $F: \mathcal(C) \to \mathcal(D)$ is called faithful if for fixed objects $X, Y \in \mathcal{C}$ it maps morphisms $X \to Y$ injectively to morphisms $F(X) \to F(Y)$.
+
+\textbf{Note.} \ A faithful functor must not be injective on objects are the set of all morphisms.
+
+\textbf{Concrete Category.} \ A concrete category is a pair $(\mathcal{C}, U)$ where $\mathcal{C}$ is a category and $U: \mathcal{C} \to \textsc{Set}$ is a faithful functor.
+
+
+\newpage
+\subsection{Abstracting}
+
+The following notions lift the properties ``injective'' and ``surjective'' as well as ``(co)kernel'' and ``image'' to categories. In particular to categories where the objects do not form sets (or have elements).
+
+\textbf{Monic Morphism.} \ Let $f: X \to Y$ be a morphism in a category $\mathcal{C}$. It is called monic (mono) if for any $g, h: A \to X$ we have left cancellation
+\[
+  f \circ g ~=~ f \circ h~\Longrightarrow~ g = h\qquad (A \rightrightarrows X \to Y).
+  \]
+
+\textbf{Note.} \ In \textsc{Set} a morphism is mono if and only if it is injective.
+
+\textbf{Epic Morphism.} \ Let $f: X \to Y$ be a morphism in a category $\mathcal{C}$. It is called epic (epi) if for any $g, h: Y \to A$ we have right cancellation
+\[
+  g \circ f ~=~ h \circ f~\Longrightarrow~ g = h \qquad (X \to Y \rightrightarrows A).
+  \]
+
+\textbf{Note.} \ Again, in \textsc{Set} epic morphisms are precisely the surjective maps.\\
+\textbf{Note.} \ In \textsc{Ring} the embedding $f: \mathbb{Z} \hookrightarrow \mathbb{Q}$ is epic (but not surjective). To see this, we need to show that any (ring) homomorphisms $f, g: \mathbb{Q} \to A$ agree on $\mathbb{Z}$.\\
+One way to show this is by showing that if $f,g$ agreen on $\mathbb{Z}$ then they must be equal: Any (ring) homomorphism $\mathbb{Q} \to A$ is uniquely determined by its values in $\mathbb{Z}$.\\
+In fact for any ring $A$ there exists at most one ring homomorphism $\mathbb{Q} \to A$.
+
+
+\textbf{Initial, Terminal and Zero Object} \ Let $\mathcal{C}$ be a category. An object $I$ in $\mathcal{C}$ is called initial if for any object $X$ there exists precisely one morphism $I \to X$.\\
+An object $M$ is called terminal if for any object $X$ there exists precisely one morphism $X \to T$.\\
+If an object $0$ is (isomorphic to) both initial and terminal object, it is called zero object.
+
+\textbf{Note.} \ Initial, terminal and zero objects are unique up to unique isomorphism.\\
+\textbf{Note.} \ Let 0 be the zero object and $f: X \to Y$. Then the compositions $0 \to X \to Y$ and $X \to Y \to 0$ are the unique morphisms $0 \to Y$ and $X \to 0$ respectively.
+
+\textbf{Proposition. Zero Morphism.} \ Let 0 be a zero object in $\mathcal{C}$. Then for any objects $X$ and $Y$ there exists a distinguished morphism
+\[
+  X \to 0 \to Y,\qquad X \stackrel{0}{\to} Y,
+\]
+the zero morphism.
+
+\textbf{Note.} \ Let $f: X \to Y$. Then the composities $X \stackrel{f}{\to} Y \stackrel{0}{\to} Z$ and $W \stackrel{0}{\to} X \stackrel{f}{\to} Y$ are given by $X \stackrel{0}{\to} Z$ and $W \stackrel{0}{\to} Y$ respectively.\\
+\textbf{Note.} \ Let $f: X \to Y$. If for all $g: Y \to Z$ we have $g \circ f = 0$, then $f = 0$ since we may choose $g = \text{id}_Y$ thus $0 = \text{id}_Y \circ f = f$.
+
+
+\textbf{Products and Coproducts.} \ Let $\mathcal{C}$ be a category. Let $X, Y$ and $X \times Y, X \sqcup Y$ be objects with morphisms $p_x, p_y$ and $i_x, i_y$ respectively. Then $X \times Y$ and $X \sqcup Y$ are called product and coproduct respectively if for any $T, t_x, t_y$ there exists a unique morphism $\varphi$ such that the following diagrams commute\\
+\begin{minipage}[h]{0.45\textwidth}
+  \centering
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    & T \arrow[bend right=25, swap]{ddl}{t_x} \arrow[bend left=25, swap]{ddr}{t_y} \arrow[swap, dashed]{d}{\varphi}&\\
+    & X \arrow[swap]{dl}{p_x} \times Y \arrow{dr}{p_y} &\\
+    X & &  Y
+  \end{tikzcd}
+\end{minipage}\hspace{0.1\textwidth}
+\begin{minipage}[h]{0.45\textwidth}
+  \centering
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    X \arrow[bend right=25, swap]{ddr}{t_x} \arrow[]{dr}{i_x} & &  Y \arrow[bend left=25]{ddl}{t_y} \arrow[swap]{dl}{p_y}\\
+    & X \sqcup Y \arrow[swap, dashed]{d}{\varphi} &\\
+    & T &
+  \end{tikzcd}
+\end{minipage}
+\vspace{1em}
+
+\textbf{Kernel and Cokernel.} \ Let $f: X \to Y$ be a morphism in a category $\mathcal{C}$ with 0. The kernel and cokernel of $f$ are objects together with morphisms $i: \text{ker}(f) \to X$, $p: Y \to \text{coker}(f)$ such that the following for any $T, j$ or $T, q$ there exists a unique morphism $\varphi$ such that the following diagrams commute if the outer squares commute\\
+\begin{minipage}[h]{0.45\textwidth}
+  \centering
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    T \arrow[bend right=25, swap]{ddr}{0} \arrow[bend left=25]{drr}{j} \arrow[dashed]{dr}{\varphi}& &\\
+     & \text{ker}(f) \arrow{r}{i} \arrow[swap]{d}{0} & X \arrow{d}{f} \\
+     & 0 \arrow{r}{0} & Y
+  \end{tikzcd}
+\]
+\end{minipage}\hspace{0.1\textwidth}
+\begin{minipage}[h]{0.45\textwidth}
+  \centering
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    X \arrow{r}{f} \arrow[swap]{d}{0} & Y \arrow{d}{p} \arrow[bend left=25]{ddr}{q} & \\
+    0 \arrow{r}{0} \arrow[bend right=25, swap]{drr}{0} & \text{coker}(f) \arrow[dashed]{dr}{\varphi} &\\
+    & & T
+  \end{tikzcd}
+\end{minipage}
+\vspace{1em}
+
+\textbf{Note.} \ Kernels and cokernels are unique up to unique isomorphism.\\
+\textbf{Note.} \ Consider the zero morphism $X \stackrel{0}{\to} Y$. Then $\text{ker}(0) = \text{id}_X$ and $\text{coker}(0) = \text{id}_Y$.
+\textbf{Note.} \ Let $X$ be an object. Then $\text{ker}(\text{id}_{X}) = 0 = \text{coker}(\text{id}_X)$. This is an instance of the following general fact.
+
+\textbf{Proposition.} \ Let $f: X \to Y$ in a category with kernels and cokernels. Then
+\begin{enumerate}
+  \item If $f$ is mono then $\text{ker}(f) = 0$,
+  \item If $f$ is epi then $\text{coker}(f) = 0$.
+\end{enumerate}
+
+\textbf{Proof.} \ (1) Assume $f$ is mono. We show that $0$ satisfies the universal property of the kernel. If we take any $T \to 0$ such that $f \circ t = 0$ (outer square commutes) then since $f$ is mono we get $f \circ t = 0 = f \circ 0$ and $t = 0$ is forced which makes the whole diagram commute as desired.\\
+(2) Omitted since it is dual.
+
+\textbf{Note.} \ The converse does not necessarily hold (if $\mathcal{C}$ is not Abelian, see below).
+
+\textbf{Proposition.} \ Any kernel is mono and any cokernel is epic.
+
+\textbf{Proof.} \
+
+\textbf{Image.} \ Let $\mathcal{C}$ be a category and $f: X \to Y$ be a morphism. Then we define the image of $f$ to be an object $\text{im}(f)$ together with morphisms $m: \text{im}(f) \to Y$ and $e: X \to \text{im}(f)$ such that $m$ is mono and for any $T$ and $e', m'$ there exists a unique morphism $\varphi$ such that the following diagram commutes if the outer square commutes\\
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    X \arrow{rr}{f} \arrow[swap]{dr}{e} \arrow[bend right=25, swap]{ddr}{e'} & & Y\\
+    & \text{im}(f) \arrow[swap, hook]{ur}{m} \arrow[swap, dashed]{d}{\varphi}&\\
+    & T \arrow[bend right=25,swap]{uur}{m'}&
+  \end{tikzcd}
+\]
+
+\newpage
+\subsection{Abelian Categories}
+
+\textbf{Ab-Category} \ An Ab-Category is a category $\mathcal{C}$ that can be equipped with the folloing structure. For any objects $X$ and $Y$ the set $\text{Hom}(A,B)$ has an abelian group structure
+\[
+  +: \text{Hom}(A,B) \times \text{Hom}(A,B) \to \text{Hom}(A,B)
+\]
+that is compatbile with compoisiton, i.e
+\[
+  f \circ (g + h) ~=~(f \circ g) + (f \circ h),\qquad (f + g) \circ h ~=~(f\circ h) + (g \circ h).
+\]
+
+\textbf{Note.} \ The neutral element of $\text{Hom}(A,B)$ is the zero morphism $A \to 0 \to B$.
+
+\textbf{Additive Category.} \ An Ab-category is called additive if it has a zero object and admits products and coproducts for all objects.
+
+\textbf{Characterization of Additive Categories.} \ A category $\mathcal{C}$ admits an additive (abelian group) structure on $\text{Hom}(A,B)$ for all objects $A,B$ if and only if
+\begin{enumerate}
+  \item $\mathcal{C}$ has a zero object,
+  \item $\mathcal{C}$ has products and coproducts for all (pairs of) objects
+  \item For each object $A$ the maps
+    \[
+      \begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}~~\text{and}~~ \begin{pmatrix}1 & 1 \\ 0 & 1\end{pmatrix}: \quad A\sqcup A \to A \times A
+    \]
+    are isomorphisms (where the 0 map denotes the composite $A \to 0 \to A$).
+\end{enumerate}
+
+\textbf{Biproduct.} \ Let $\mathcal{C}$ be an additive category. Then for any objects $X$ and $Y$ we have $X \times Y \cong X \sqcup Y$. Thus instead of writing the (co)product we write $X \oplus Y$.
+
+\textbf{Abelian Category.} \ An additive category is called abelian if
+\begin{enumerate}
+  \item Every morphism has a kernel and cokernel,
+  \item Every mono is the kernel of its cokernel,
+  \item Every epi is the cokernel of its kernel.
+\end{enumerate}
+
+\textbf{Characterization of Abelian Categories.} \ A category $\mathcal{C}$ is an abelian category if and only if
+\begin{enumerate}
+  \item $\mathcal{C}$ has a zero object,
+  \item $\mathcal{C}$ has products and coproducts for all objects,
+  \item $\mathcal{C}$ has kernel and cokernel for all morphisms,
+  \item Every mono is a kernel and every epi is a cokernel.
+\end{enumerate}
+
+
+
+\textbf{Image in an Abelian Category.} \ Let $\mathcal{C}$ be an Abelian category and $f: X \to Y$ be a morphism. Then
+\[
+  \text{im}(f) ~=~\text{ker}\big(Y \stackrel{p}{\to}\text{coker}(f)\big)
+\]
+
+\newpage
+\subsection{Exact Sequences}
+
+In this subsection we work with abelian categories.
+
+\textbf{Homology and Exactness.} \ The notion of exactness applies to a pair of maps 
+\[
+  A \stackrel{f}{\longrightarrow} B \stackrel{g}{\longrightarrow} C
+\]
+such that $g\circ f = 0$, i.e. the composite factors through 0. Consider the diagrams:
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    \text{im}(f) \arrow[bend left=12]{drr}{t} \arrow[bend right=12]{ddr}{} & & A \arrow{ll}{} \arrow{d}{f} \\
+    & & B \arrow{d}{g}\\
+    & 0\arrow{r} & C
+  \end{tikzcd}
+  \hspace{30px}
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    \text{im}(f) \arrow[bend left=12]{drr}{t} \arrow[bend right=12]{ddr}{} \arrow[dashed]{dr}{\varphi} & & A \arrow{ll}{} \arrow{d}{f} \\
+    & \text{ker}(g) \arrow{d}{} \arrow{r}{} & B \arrow{d}{g}\\
+    & 0\arrow{r} & C
+  \end{tikzcd}
+\]
+In the right column we have our pair of maps $f$ and $g$. $f$ factors through its image and includes via the monomorphism $t$.\\
+Here, the composite $g\circ t: \text{im}(f) \to C$ factors through zero. Thus, by the universal property of the kernel $\text{ker}(g)$ there exists a unique dashed morphism $\varphi: \text{im}{f} \to \text{ker}(g)$.\\
+The cokernel of that map $\text{coker}(\varphi)$ is called the homology object at $B$. If $\text{coker}(\varphi) = 0$ and thus $\varphi$ and isomorphism, then we say $A \stackrel{f}{\to} B \stackrel{g}{\to} C$ is exact at $B$.
+
+\textbf{Short Exact Sequence, Extension.} \ A short exact sequence is a sequence of morphisms
+\[
+  0 \longrightarrow A \stackrel{f}{\longrightarrow} B \stackrel{g}{\longrightarrow} C \longrightarrow 0
+\]
+such that it is exact at $A, B$ and $C$. We call $B$ an extension of $C$ by $A$.
+
+\textbf{Split Short Exact Sequence.} \ Consider the following diagram:
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    0 \arrow{r}{} & A \arrow{r}{f} \arrow[equal]{d}{} & B \arrow{r}{g} \arrow[dashed]{d}{\varphi} & C \arrow{r}{} \arrow[equal]{d}{} & 0 \\
+    0 \arrow{r} & A \arrow[swap]{r}{(1,0)^T} & A \oplus C \arrow[swap]{r}{(0,1)} & C \arrow{r}{} & 0
+  \end{tikzcd}
+\]
+We call the short exact sequence $0 \to A \to B \to C \to 0$ split exact if there exists an isomorphism $\varphi$ (dashed) such that the diagram commutes.\\
+When can give two equivalent criteria for the above sequence to be split short exact. The following are equivalent
+\begin{enumerate}
+  \item An isomorphism $\varphi$ exists such that the above diagram commutes,
+  \item There exists $s: C \to B$ such that $g\circ s = \text{id}_C$,
+  \item There exists $r: B \to A$ such that $r\circ f = \text{id}_A$.
+\end{enumerate}
+
+\textbf{Short Exact Sequence, Kernels and Cokernels.} \ Let
+\[
+  A \stackrel{f}{\longrightarrow} B \stackrel{g}{\longrightarrow} C
+\]
+be a sequence such that $g \circ f = 0$. Then it is a short exact sequence if and only if $A \cong \text{ker}(g)$ and $C \cong \text{cokern}(f)$.
+
+
+\newpage
+\subsection{Additive and Exact Functors}
+
+\textbf{Additive Functor.} \ Let $\mathcal{A}$ and $\mathcal{B}$ be additive categories (Ab-categories is sufficient). A functor $F: \mathcal{A} \to \mathcal{B}$ is called an additive (or Ab-functor) if for any objects $A, A' \in \mathcal{A}$ the map
+\[
+  F: \text{Hom}(A,A') \to \text{Hom}\big(F(A),F(A')\big),\quad f \mapsto F(f)
+\]
+is a group homomorphism, i.e. $F(f + g) = F(f) + F(g)$ and $F(0) = 0$.
+
+\textbf{Proposition. Additive I.} \ Let $F: \mathcal{A} \to \mathcal{B}$ be an Ab-Functor between Ab-categories. Then
+\begin{enumerate}
+  \item $F(0) = 0$ (preserves initial, terminal and zero objects),
+  \item $F(A \times B) = F(A) \times F(B)$ (preserves products),
+  \item $F(A \sqcup B) = F(A) \sqcup F(B)$ (preserves coproducts).
+\end{enumerate}
+
+\textbf{Proposition. Additive II.} \ Let $F: \mathcal{A} \to \mathcal{B}$ be a functor between additive categories that preserves 0, products and coproducts. Then it is additive.
+
+\textbf{Left Exact Functor.} \ Let $\mathcal{A}$ and $\mathcal{B}$ be abelian categories and $F: \mathcal{A} \to \mathcal{B}$ be an additive functor. $F$ is called left exact if it preserves kernels: Given a morphism $f: A \to B$ we have that 
+\[
+  F\big(\text{ker}(f)\big) ~\cong~ \text{ker}\big(F(f)\big).
+\]
+i.e. applying $F$ to $\text{ker}(f)$ is a kernel of $F(f)$.\\
+Equivalently, a left exact functor preserves the exactness of sequences
+\[
+  0 \longrightarrow A \longrightarrow B \longrightarrow C.
+\]
+
+\textbf{Right Exact Functor.} \ Dually, $F: \mathcal{A} \to \mathcal{B}$ is called right exact if it preserves cokernels or equivalently exactness of sequences of the form
+\[
+  A \longrightarrow B \longrightarrow C \longrightarrow 0.
+\]
+
+\textbf{Exact Functor.} \ $F: \mathcal{A} \to \mathcal{B}$ is called exact if it preserves both kernels and cokernels or equivalently the exactness of short exact sequences
+\[
+  0\longrightarrow A \longrightarrow B \longrightarrow C \longrightarrow 0.
+\]
+
+\newpage
+\subsection{Projective Objects}
+
+In this subsection we work with Abelian categories.
+
+\textbf{Projective Object.} \ Let $P \in \mathcal{C}$ be an object. $P$ is called projective if any short exact sequence
+\[
+  0 \longrightarrow A \longrightarrow B \longrightarrow P \longrightarrow 0
+\]
+splits.
+
+\textbf{Characterizing Projective Objects.} \ The following are equivalent
+\begin{enumerate}
+  \item $P \in \mathcal{C}$ is projective,
+  \item Any epi $p: B \to P$ splits, i.e. there exists (a section) $s: P \to B$ such that $p \circ s = \text{id}_P$,
+  \item Let $f: P \to Y$ be any morphism. Then we can factor $f$ along any epi $g: X \to Y$, i.e. there exists a dashed arrow such that
+    \[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    & P \arrow[dashed,swap]{dl}{\exists !} \arrow{d}{f}\\
+    X \arrow[two heads]{r}{g} & Y
+  \end{tikzcd}
+    \]
+    commutes,
+  \item For any $X \in \mathcal{C}$ the Hom-functor $\text{Hom}(X,-): \mathcal{C} \to \textsc{Ab}$ is exact.
+\end{enumerate}
+
+\textbf{Proof.} \ 
+
+\textbf{Properties of Projective Objects.} \ The coproduct of projective objects is projective. If $X \oplus Y$ is projective iff $X$ and $Y$ are projective.
+
+\textbf{Enough Projectives.} \ An abelian category $\mathcal{C}$ is said to have enough projectives if for each object $X \in \mathcal{C}$ there exists a projective object $P \in \mathcal{C}$ and an epimorphism $P \twoheadrightarrow X$ onto $X$.
+
+\textbf{Projective Resolution.} \  A projective resolution of an object $A \in \mathcal{C}$ is an exact sequence $P_\bullet$
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    \cdots \arrow{r} & P_2 \arrow{r} & P_1 \arrow{r} & P_0 \arrow[two heads]{d} &\\ & & & A \arrow{r} & 0
+  \end{tikzcd}
+\]
+of projective objects $P_i$. If $\mathcal{C}$ has enough projective a projective resolution exists for any object $A \in \mathcal{C}$.
+
+\textbf{Proof.} \ We construct $P_\bullet$ inductively starting with an projective object $P =: P_0$ for $\text{ker}(A \stackrel{e_{-1}}{\longrightarrow} 0)$ such that $P_0 \to \text{ker}(e_{-1})$ yielding the diagram
+\[
+  \begin{tikzcd}[column sep=2em, row sep=2.5em]
+    P_0 \arrow[two heads,swap]{dr}{e_{0}} \arrow[two heads]{rr} & & A \arrow{dr}{e_{-1}} & \\
+    & \text{ker}(e_{-1}) \arrow[equal]{ur} & & 0
+  \end{tikzcd}
+\]
+and continuing this process by finding projective objects for the objects $\text{ker}(e_i)$
+\[
+  \begin{tikzcd}[column sep=2em, row sep=2.5em]
+    \cdots \arrow[dashed]{rr} \arrow[two heads,swap]{dr}{e_2} & & P_1 \arrow[dashed]{rr} \arrow[two heads,swap]{dr}{e_1} & & P_0 \arrow[two heads,swap]{dr}{e_{0}} \arrow[dashed]{rr} & & A \arrow{dr} & \\
+    & \text{ker}(e_1) \arrow[hook]{ur} & & \text{ker}(e_0) \arrow[hook]{ur}{} & & \text{ker}(e_{-1}) \arrow[equal]{ur} & & 0
+  \end{tikzcd}
+\]
+we obtain the dashed arrows as the composition of maps factoring in and out of the kernels.
+

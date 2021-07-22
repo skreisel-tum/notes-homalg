@@ -1,0 +1,45 @@
+\section{Derived Functors}
+
+In this section we work with abelian categories.
+
+We have seen that $\text{Hom}(-,-): \mathcal{A}^\text{op}\times\mathcal{A} \to \textsc{Ab}$ is not a exact functor but only a left exact functor, failing to preserve short exact sequences at the right end. In this section we develop a tool to quanitfy by how much it fails to preserve exactness at the right when applied to a short exact sequence.
+
+Generally, from a left exact functor $F: \mathcal{A} \to \mathcal{B}$ we derive a sequence of new functors $R^i(F): \mathcal{A} \to \mathcal{B}$ such that $R^0(F) = F$ and for any short exact sequence in $\mathcal{A}$
+\[
+  0 \longrightarrow A \longrightarrow B \longrightarrow C \longrightarrow 0
+  \]
+we not only obtain a exact sequence
+\[
+  0 \longrightarrow F(A) \longrightarrow F(B) \longrightarrow F(C)
+  \]
+  but also a long exact sequence
+  \[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    0 \rar &
+    F(A) \rar &
+    F(B) \rar \ar[draw=none]{d}[name=X, anchor=center]{} &
+    F(C) \ar[rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east)
+                                        |- (X.center) \tikztonodes
+                                        -| ([xshift=-2ex]\tikztotarget.west)
+                                        -- (\tikztotarget)}]{dll}[at end]{\delta}
+  \\
+  &
+  R^1(F)(A) \rar &
+  R^1(F)(B) \rar \ar[draw=none]{d}[name=Y, anchor=center]{} &
+  R^1(F)(C) \ar[rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east)
+                                        |- (Y.center) \tikztonodes
+                                        -| ([xshift=-2ex]\tikztotarget.west)
+                                        -- (\tikztotarget)}]{dll}[at end]{\delta}
+  \\
+  &
+  R^2(F)(A) \rar &
+  R^2(F)(B) \rar &
+  ~~\cdots
+  \end{tikzcd}
+    \]
+with connecting morphisms $\delta$ where $R^1(F)(A)$ (and the tail of the sequence) is a measure for the extent that $F$ fails to be (right) exact.
+
+The sequence $R^i(F)$ for $i \geq 0$ together with the connecting map $\delta$ is called a cohomological delta functor.\\
+We then show that the way we constructed this cohomological delta functor, the derived functor of $F$, is not arbitrary but really `the' derived functor. It is a universal cohomological delta functor.\\
+Universal cohomological delta functors are those that determine natural transformations for delta functors completely by the 0th degree. But any derived functor of $F$, in its 0th degree, is naturally isomorphic to $F$ by assumption.
+%Let $T^i, \delta$ be a cohomological delta functor. Given a natural transformations $\alpha^i: T^i \to S^i$ of cohomological delta functors that are compatible with their respective connecting maps $\delta$ we call $T^i$ universal if $\alpha^i$ is completely determined by the values of $\alpha^0: T^0 \to S^0$.

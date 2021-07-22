@@ -1,0 +1,30 @@
+\section{Extensions}
+
+
+\textbf{Definition. Extensions.} \ Fix two objects $A, C$ and let $B$ and $B'$ be extensions of $C$ by $A$. Then we say these two extensions are equivalent if there exists an isomorphism $\varphi$ such that
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    0 \arrow{r}{} & A \arrow{r}{} \arrow[equal]{d}{} & B \arrow{r}{} \arrow[dashed]{d}{\varphi} & C \arrow{r}{} \arrow[equal]{d}{} & 0 \\
+    0 \arrow{r} & A \arrow[swap]{r}{} & B' \arrow[swap]{r}{} & C \arrow{r}{} & 0
+  \end{tikzcd}
+\]
+commutes. This is an equivalence relation on the set of extensions of $C$ by $A$. The set $\text{Ext}(C,A)$ denotes the set those extensions modulo equivalence.\\
+The map
+\[
+  \text{Ext}(-,-): \mathcal{C}^\text{op} \times \mathcal{C} \to \textsc{SET}
+\]
+yields functors $\text{Ext}(-,C)$ and $\text{Ext}(A,-)$.
+
+\textbf{Note.} \ A priori, these functors map into \textsc{SET}, the category of large sets (and not into small sets, \textsc{Set}).\\
+\textbf{Note.} \ For any $A, C$ there exists the trivial extension $A \oplus C$.
+
+\textbf{Proposition.} \ Let $f: A \to B$ be a morphism. Then
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    0 \arrow{r}{} & \text{ker}(f) \arrow[hook]{r}{} & A \arrow{rr}{f} \arrow[two heads]{dr}{} & & B \arrow[two heads]{r}{} & \text{coker}(f) \arrow{r}{} & 0\\
+    & & & \text{im}{f} \arrow[hook]{ur}{} \arrow{dr}{} & & &\\
+    & & 0 \arrow{ur} & & 0 & &
+  \end{tikzcd}
+\]
+is exact everywhere.
+

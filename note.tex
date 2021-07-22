@@ -1,0 +1,50 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[a5paper,verbose]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{latexsym}
+\usepackage{tikz-cd}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+
+\author{seb}
+\title{Diffg}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+\definecolor{ruledcolor}{RGB}{235, 250, 235}
+
+\newcommand{\ruled}[1] {
+  \begin{tcolorbox}[breakable,enhanced,colback=ruledcolor,arc=0pt,boxrule=0pt,toprule=1pt,bottomrule=1pt]
+  #1
+  \end{tcolorbox}
+}
+
+\newcommand{\ruledd}[2] {
+  \begin{tcolorbox}[breakable,enhanced,colback=ruledcolor,arc=0pt,boxrule=0pt,toprule=1pt,bottomrule=1pt]
+  #1
+    \rule{\textwidth}{0.5pt}\vspace{3pt}
+  #2
+  \end{tcolorbox}
+}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section*{About}
+
+\newpage
+
+\input{cat}\newpage
+\input{deriv}\newpage
+\input{ext}\newpage
+
+
+\end{document}
