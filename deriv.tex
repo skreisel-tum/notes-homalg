@@ -41,5 +41,263 @@ with connecting morphisms $\delta$ where $R^1(F)(A)$ (and the tail of the sequen
 
 The sequence $R^i(F)$ for $i \geq 0$ together with the connecting map $\delta$ is called a cohomological delta functor.\\
 We then show that the way we constructed this cohomological delta functor, the derived functor of $F$, is not arbitrary but really `the' derived functor. It is a universal cohomological delta functor.\\
-Universal cohomological delta functors are those that determine natural transformations for delta functors completely by the 0th degree. But any derived functor of $F$, in its 0th degree, is naturally isomorphic to $F$ by assumption.
+Universal cohomological delta functors are those that determine natural transformations for delta functors completely by the 0th degree. But any derived functor of $F$, in its 0th degree, is naturally isomorphic to $F$ by assumption. Thus the derived functor, regardless of it's construction, is uniquely determined up to natural isomorphism of functors.
 %Let $T^i, \delta$ be a cohomological delta functor. Given a natural transformations $\alpha^i: T^i \to S^i$ of cohomological delta functors that are compatible with their respective connecting maps $\delta$ we call $T^i$ universal if $\alpha^i$ is completely determined by the values of $\alpha^0: T^0 \to S^0$.
+
+\subsection{Functorial Resolutions}
+
+Let $\mathcal{A}$ be an abelian category with enough projectives. Given an object $A \in \mathcal{A}$ we a guaranteed to find a projective resolution $P_\bullet \twoheadrightarrow A$. Only from this however it is not clear how to construct a map $\mathcal{A} \to \text{Ch}(\mathcal{A})_{\geq 0}$ and much less so how to make it into a functor.
+
+It is in fact not possible to to so with $\text{Ch}(\mathcal{A})_{\geq 0}$. Instead we need to move to the category of chain complexes up to chain homotopies $K(\mathcal{A})_{\geq 0}$.
+
+\textbf{Proposition.} \ Let $\mathcal{A}$ be an abelian category with enough projectives and $f: A \to B$ a morphism in $\mathcal{A}$. Let $P_\bullet \to A$ and $Q_\bullet \to B$ be projective resolutions of $A$ and $B$ respectively. Then there exists a chain map $f_\bullet: P_\bullet \to Q_\bullet$ that extends $f$ such that the following diagram commutes:
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    \cdots \rar & P_1 \rar \arrow[dashed,swap]{d}{f_1} & P_0 \arrow{rr} \arrow[dashed,swap]{d}{f_0} & & A \rar \arrow[swap]{d}{f} & 0\\
+    \cdots \rar & Q_1 \rar & Q_0 \arrow{rr} & & B \rar & 0
+  \end{tikzcd}
+  \]
+The chain map $f_\bullet$ is unique up to chain homotopy.
+
+\textbf{Definition. Projective Resolutions as Category.} \ We define the full additive subcategories
+\begin{enumerate}
+  \item $\text{Proj}(\mathcal{A}) \subset \mathcal{A}$ of projective objects,
+  \item $K_{\geq 0}(\text{Proj}(\mathcal{A}))$ of chain complexes of projective objects up to homotopy in non-negative degree,
+  \item $K_{\geq 0}^0(\text{Proj}(\mathcal{A}))$ of chain complexes of projective objects up to homotopy in non-negative degree such that $H_n(P_\bullet) = 0$ for all $n \geq 0$ and $P_\bullet \in K_{\geq 0}(\text{Proj}(\mathcal{A}))$.
+\end{enumerate}
+\textbf{Note.} \ Every object in (3) is a projective resolution
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    \cdots \rar & P_1 \arrow{r}{p_1} & P_0 \arrow{rr}{} & & \text{coker}(p_1) \rar & 0
+  \end{tikzcd}
+  \]
+of the cokernel of the last differential $p_1$.
+
+\textbf{Proposition.} \ Let $\mathcal{A}$ be an abelian category with enough projectives. Then the functor
+\[
+  H_0: K_{\geq 0}^0(\text{Proj}(\mathcal{A})) \to \mathcal{A}
+  \]
+  is an equivalence of categories. Thus there exists an inverse functor denote
+  \[
+    P_\bullet(-): \mathcal{A} \to K_{\geq 0}^0(\text{Proj}(\mathcal{A})) \subset K_{\geq 0}(\mathcal{A})
+  \]
+  that is unique up to natural isomorphism.
+
+
+\subsection{Derived Functors}
+
+\textbf{Definition. Left Derived Functor.} \ Let $\mathcal{A}$ and $\mathcal{B}$ be abelian categories such that $\mathcal{A}$ has enough projectives. Let $F: \mathcal{A} \to \mathcal{B}$ be a right exact functor. We define functors $F_i: \mathcal{A} \to \mathcal{B}$ for all $i \geq 0$ by
+\[
+  \begin{tikzcd}[column sep=4.5em, row sep=4.5em]
+    A \arrow[dashed]{r}{F_i} \arrow[swap]{d}{P_\bullet(-)} & B \\
+    K_{\geq 0}^0(\text{Proj}(\mathcal{A})) \arrow[swap]{r}{K(F)} \arrow[swap, shift right=2]{u}{H_0} & K_{\geq 0}(B) \arrow[swap]{u}{H_i}
+  \end{tikzcd}
+  \]
+We also write $L_iF$ for $F_i$.
+
+\textbf{Definition. Right Derived Functor.} \ Similarly, we define the right derived functor of a left exact functor $F: \mathcal{A} \to \mathcal{B}$ whenever $\mathcal{A}$ has enough injectives. Instead of a projective resolution we use an injective resolution to obtain a cochain complex, apply cohomology and obtain the right derived functor denote by $R^iF$.
+
+\textbf{Definition. Ext.} \ Let $\mathcal{A}$ be an abelian category. The functor $\text{Hom}(-,-): \mathcal{A}^\text{op} \times \mathcal{A} \to \textsc{Ab}$ is left exact in both arguments. Let $B \in \mathcal{A}$ be fixed. We define
+\[
+  \text{Ext}^i(-,B) ~:=~R^i\text{Hom}(-,B) ~=~H^i(-) \circ K(-) \circ P_\bullet(-).
+\]
+Note that we use a projective resolution for the first argument of $\text{Hom}(-,-)$ since a projective resolution in $\mathcal{A}$ is an injective resolution in $\mathcal{A}^\text{op}$ as required.
+
+\subsection{(Universal) Delta Functors}
+
+In the previous subsection we saw how to construct the derived functor and showed that is actually a functor, independent of the choice of projective / injective resolution chosen. Now we introduce additional structure that naturally arises in this process, a long exact sequence, and show that derived functors are universal delta functors.
+
+\textbf{Definition. Homological Delta Functor.} \ Let $\mathcal{A}$ and $\mathcal{B}$ be abelian categories and $T_n: \mathcal{A} \to \mathcal{B}$ additive functors. If for each short exact sequence
+\[
+  s ~:=~ \big(~0 \longrightarrow A \longrightarrow B \longrightarrow C \longrightarrow 0~\big)
+\]
+in $\mathcal{A}$ and each $n \in \mathbb{N}_{\geq 0}$ there exists a morphism
+\[
+  \delta_n^s: T_n(C) \to T_{n -1}(A)
+\]
+(depending on $s$) such that the sequence
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    \cdots~~ \rar &
+    T_1(B) \rar \ar[draw=none]{d}[name=X, anchor=center]{} &
+    T_1(C) \ar[rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east)
+                                        |- (X.center) \tikztonodes
+                                        -| ([xshift=-2ex]\tikztotarget.west)
+                                        -- (\tikztotarget)}]{dll}[at end]{\delta_1}
+    &
+  \\
+  T_0(A) \rar &
+  T_0(B) \rar &
+    T_0(C) \rar & 0
+  \end{tikzcd}
+\]
+is exact and $\delta_\bullet^s$ is natural in $s$, i.e. for any morphism of short exact sequences $s \mapsto t$ given as a chain map
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    0 \rar &
+    A \rar \arrow{d}{f} &
+    B \rar \arrow{d}{g} &
+    C \rar \arrow{d}{h} &
+    0
+    & &
+    s \arrow{d}{}
+    \\
+    0 \rar &
+    A' \rar &
+    B' \rar &
+    C' \rar &
+    0
+    & &
+    t
+  \end{tikzcd}
+\]
+the diagram
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    T_n(C) \arrow{r}{\delta^s} \arrow[swap]{d}{h} &
+    T_{n-1}(A) \arrow{d}{f}
+    \\
+    T_n(C') \arrow[swap]{r}{\delta^t} &
+    T_{n-1}(A)
+  \end{tikzcd}
+\]
+commutes for all $n\in\mathbb{N}_{\geq 1}$.
+
+We now show that homology itself is a delta functor (dropping the non-negative degree constraint). The derived functors will then inherit the structure from homology.
+
+\textbf{Proposition. Homology is a Homological Delta Functor.} \ Let $\mathcal{A}$ be an abelian category and $H_n: \text{Ch}(\mathcal{A}) \to \mathcal{A}$ be the homology functor for $n \in \mathbb{Z}$. Then the functors $H_n$ for $n \in \mathbb{Z}$ can be assembled into a long exact sequence with a connecting morphism $\delta$ that is natural with respect to the short exact sequence. Thus homology is a homological delta functor.
+
+\textbf{Proof.} \ We get $\delta$ and its naturality from the snake lemma.
+
+\textbf{Proposition. Left Derived Functor as Homological Delta Functor.} \ Let $\mathcal{A}$ and $\mathcal{B}$ be abelian categories such that $\mathcal{A}$ has enough projectives and $F: \mathcal{A} \to \mathcal{B}$ be right exact. Let
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    0 \rar &
+    P'_\bullet \rar \arrow{d}{} &
+    P_\bullet \rar \arrow{d}{} &
+    P''_\bullet \rar \arrow{d}{} &
+    0
+    \\
+    0 \rar &
+    A' \rar &
+    A \rar &
+    A'' \rar &
+    0
+  \end{tikzcd}
+\]
+be a short exact sequence in $A$, that for each term has a projective resolution that together assemble into a degree-wise short exact sequence of projective resolutions.\\
+We apply the induced functor $F$ to this short exact sequence to obtain
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    0 \rar &
+    F(P'_\bullet) \rar &
+    F(P_\bullet) \rar &
+    F(P''_\bullet) \rar &
+    0
+  \end{tikzcd}
+\]
+that is again short exact, because $F$ preserves the degree-wise exactness of sequences of projective objects (this is due to the following: Any short exact sequence of projective objects splits, thus by additivity $F$ preserves it). Applying homology $H_n$ yields a long exact sequence
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    \cdots~~ \rar &
+    F_1(A) \rar \ar[draw=none]{d}[name=X, anchor=center]{} &
+    F_1(A'') \ar[rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east)
+                                        |- (X.center) \tikztonodes
+                                        -| ([xshift=-2ex]\tikztotarget.west)
+                                        -- (\tikztotarget)}]{dll}[at end]{\delta_1}
+    &
+  \\
+  F_0(A') \rar &
+  F_0(A) \rar &
+  F_0(A'') \rar & 0
+  \end{tikzcd}
+\]
+assembling the derived functors $F_i$ for $F$ into a long exact sequence as desired.
+
+This construction has two issues. First, it is not clear that we can find projective resolutions of $A', A$ and $A''$ such that they fit together into a short exact sequence themselves.\\
+Additionally, a morphism of short exact sequences needs to induce a morphism of the projective resolutions such that this chain map commutes with the surjection onto the original sequence. A priori we only get this up to chain homotopy. The next two propisitions given an answer to these two isses.
+
+\textbf{Proposition. Horseshoe Lemma.} \ Given a short exact sequence and projective resolutions
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    &
+    P'_\bullet \arrow{d}{} &
+    &
+    P''_\bullet \arrow{d}{} &
+    &
+    \\
+    0 \rar &
+    A' \rar &
+    A \rar &
+    A'' \rar &
+    0
+  \end{tikzcd}
+\]
+we can find a projective resolution $P_\bullet = P'_\bullet \oplus P''_\bullet$ (degree-wise direct sum) of $A$ such that $P'_\bullet \to P_\bullet \to P''_\bullet$ is degree-wise short exact.
+
+\textbf{Proposition.} \ Given a morphism of short exact sequences
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    0 \rar &
+    A' \rar \arrow{d}{} &
+    A \rar \arrow{d}{} &
+    A''\rar \arrow{d}{} &
+    0
+    \\
+    0 \rar &
+    B' \rar &
+    B \rar &
+    B'' \rar &
+    0
+  \end{tikzcd}
+\]
+we can find projective resolutions of the upper and lower short exact sequence respectively and a morphism
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    0 \rar &
+    P'_\bullet \rar \arrow{d}{} &
+    P_\bullet \rar \arrow{d}{} &
+    P''_\bullet\rar \arrow{d}{} &
+    0
+    \\
+    0 \rar &
+    Q'_\bullet \rar &
+    Q_\bullet \rar &
+    Q''_\bullet \rar &
+    0
+  \end{tikzcd}
+\]
+such that the the epimorphisms $P'_\bullet \twoheadrightarrow A'$, $Q'_\bullet \twoheadrightarrow B'$, $P_\bullet \twoheadrightarrow A$, and so forth commoute with the chain maps.
+
+\textbf{Proof.} \ Arrow category construction.
+
+\textbf{Definition. Map of Delta Functors.} \ $S_n,\delta$ and $T_n,\delta$ be homological $\delta$-functors $\mathcal{A} \to \mathcal{B}$. A map of homological $\delta$-functors is given by a natural transformation $\alpha_n: S_n \to T_n$ for each $n\in\mathbb{N}_0$ such that for any short exact sequence
+\[
+  0 \longrightarrow A \longrightarrow B \longrightarrow C \longrightarrow 0
+\]
+the diagram
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    S_n(C) \arrow{r}{\delta} \arrow[swap]{d}{\alpha_n(C)} &
+    S_{n-1}(A) \arrow{d}{\alpha_{n-1}(A)} \\
+    T_n(C) \arrow[swap]{r}{\delta} &
+    T_{n-1}(A) \\
+  \end{tikzcd}
+\]
+commutes for all $n \geq 1$.
+
+\textbf{Definition. Universal Delta Functor.} \ A homological $\delta$-functor $T_n: \mathcal{A} \to \mathcal{B}$ is called universal if for all homological $\delta$-functors $S_n: \mathcal{A} \to \mathcal{B}$ and all natural transformations $\alpha_0: S_0 \to T_0$ there exists a unique map of $\delta$-functors $\alpha: S \to T$ that extends $\alpha_0$.
+
+\textbf{Proposition. Unique Universal Delta Functor.} \ Let $S$ and $T$ both be universal $\delta$-functors $\mathcal{A} \to \mathcal{B}$ such that $S_0 \cong T_0$ is a natural isomorphism of functors. Then $S_n \cong T_n$ for all $n \in \mathbb{N}_0$ and we say that $S$ and $T$ are isomorphic as $\delta$-functors.
+
+We now want to show that any derived functor is a universal $\delta$-functor. From the above proposition it then follows that the $\delta$-functor structure of the derived functor is unique up to isomorphism of $\delta$-functors, since any derived functors of $F$ agree in degree $0$ by assumption.\\
+To show this, we show that (a) coeffacable $\delta$-functors are universal and (b) that derived functors are coeffaceable.
+
+\textbf{Definition. Coeffaceable Delta Functor.} \ Let $T: \mathcal{A} \to \mathcal{B}$ be a $\delta$-functor. It is called coeffacable if for any object $A \in \mathcal{A}$ there exists $P \in \mathcal{A}$ and a epimorphism $u: P \twoheadrightarrow A$ such that $T_n(u) = 0$ for all $n \geq 1$ (but not necessarily for $n = 0$).
+
+\textbf{Note.} \ Directly from this definition we see that the left derived functor $L_nF$ of some right exact functor $F: \mathcal{A} \to \mathcal{B}$ is coeffacable:\\
+Given any $A \in \mathcal{A}$ we find a projective object $P \in \mathcal{A}$ such that $P \twoheadrightarrow A$. Since $L_nF(P) = 0$ for any projective object and $i \neq 0$, the claim follows.
+
+\textbf{Proposition. Coeffacable Delta Functors are Universal.} \ Let $T: \mathcal{A} \to \mathcal{B}$ be a coeffaceable $\delta$-functor. Then it is universal, i.e. for any $\delta$-functor $S: \mathcal{A} \to \mathcal{B}$ and natural transformation $\alpha_0: S_0 \to T_0$ we can extend $\alpha_0$ uniquely to a map of $\delta$-functors.
+
+\textbf{Proof.} \
