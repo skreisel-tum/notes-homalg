@@ -1,0 +1,89 @@
+\section{Group Homology}
+
+\textbf{Note. G-Module.} \ Let $G$ be a group. We define the category of left $G$-modules \textsc{G-Mod} to be abelian groups (written additively) with an additional left action of group elements in $G$, written $g\cdot m$ such that
+\begin{enumerate}
+  \item $g\cdot (x + y) = g \cdot x + g \cdot y$,
+  \item $(gh) \cdot x = g\cdot (hx)$,
+  \item $1\cdot x = x$.
+\end{enumerate}
+
+$G$-modules are similar to $R$-modules, but lack the multiplication of ring elements. A $G$-module homomorphism $f: M \to N$ is a group homomorphism of abelian groups that satisfy $f(g\cdot a) = g\cdot f(a)$ (one could say it is $G$-linear).
+
+\textbf{Note.} \ \textsc{G-Mod} is an abelian category.
+
+\textbf{Note.} \ Fix a group $G$. Denote by $BG$ the category with one element and morphisms $* \to *$ equal to elements in $G$. Then
+\[
+  \text{Fun}(BG,\textsc{Ab}) ~\cong~\textsc{G-Mod} \quad \text{by}\quad F \mapsto F(*)
+\]
+where $g$ facts on $F(*)$ by the group homomorphism $F(g): F(*) \to F(*)$, i.e. $g\cdot m = F(g)(m) \in F(*)$ for all $m \in F(*)$ and $g \in G$.
+
+
+\textbf{Note. Trivial G-Module.} \ Let $G$ be a fixed group and $M$ be an abelian group. Then there is a distinguished $G$-module structure on $M$ by $g\cdot m = m$ for all $g \in G$. This is called the trivial $G$-module of $M$, denoted by $\text{triv}(M)$ and $\underline{M}$.\\
+In fact for a fixed group $G$ the map $\text{triv}(-): \textsc{Ab} \to \textsc{G-Mod}$ is a exact and fully faithful functor. If $f: M \to N$ is a morphism of abelian groups then clearly $\text{triv}(f) = f$ respects the (trivial) scalar multiplication with elements from $G$.
+
+\textbf{Definition. Integral Group Ring.} \ Let $G$ be a group. We can form a free $\mathbb{Z}$-module by
+\[
+  \mathbb{Z}G ~:=~\bigoplus_{g\in G}\mathbb{Z}g.
+\]
+This module also carries the structure of a ring with multiplication on a basis of $\mathbb{Z}G$ given by the group law of $G$, i.e. $g_ig_j = g_i\cdot g_j$ that extends $\mathbb{Z}$-linearly.
+
+\textbf{Example.} \ Let $G = \{ 1, a, a^2 \}$ be the cyclic group of three elements, multiplication of the ring $\mathbb{Z}G$ of elements $r = z_01 + z_1a + z_2a^2$ and $s = w_01 + w_1a + w_2a^2$ is given by
+\[
+  rs ~=~ z_0w_01 + z_0w_1a + z_0w_2a^2 + \cdots
+\]
+where $z_iw_i$ denotes multiplication in $\mathbb{Z}$.
+
+\textbf{Definition. Augmentation Map.} \ Let $G$ be a group. The canonical ring homomorphism
+\[
+  \varepsilon: \mathbb{Z}G \to \mathbb{Z},\qquad g \mapsto 1
+\]
+is called augmentation map and sum all coefficients of any element $m \in \mathbb{Z}G$.
+
+\textbf{Example.} \ Let $G = C_n$ be the cyclic groups on $n$ elements. Then $\mathbb{Z}G \cong \mathbb{Z}[t]/(t^n - 1)$, the ring of polynomials of finite degree at most $n - 1$.
+
+\textbf{Example.} \ Let $G = C_\infty$ be the infinite cycle group. Then $\mathbb{Z}G \cong \mathbb{Z}[t^{-1},t]$, the ring of Laurent polynomials.
+
+\textbf{Proposition. G-Modules as Ring Modules.} \ Let $G$ be a fixed group and $M$ a $G$-module. Then we can view $M$ as a $R$-module (ring module) for $R = \mathbb{Z}G$ by
+\[
+  g\cdot m ~\mapsto~ (1g) \cdot m,\qquad \Bigg(\sum_{i = 1}^{|G|}z_ig_i\Bigg) \cdot m ~\mapsto~ \sum z_i(g_i\cdot m).
+\]
+This is an isomorphism of categories $G$-\textsc{Mod} and $\mathbb{Z}G$-\textsc{Mod}.
+
+\textbf{Definition. Group of (Co)Invariants.} \ Let $G$ be a fixed group and $M$ a $G$-module. We define abelian groups
+\[
+  M^G = \big\{ m \in M ~|~ g\cdot m = m\quad \forall g \in G\big\}
+\]
+and
+\[
+ M_G = M/(g\cdot m - m ~|~g \in G,~m\in M)
+\]
+called group of invariants and group of coinvariants respectively. $M^G$ is a subgroup of $M$ and $M_G$ is a quotient of $M$, both discarding the $G$-module structure.\\
+Note that a $G$-module morphism $f: M \to N$ descends to morphisms $f^G: M^G \to N^G$ and $f_G: M_G \to N_G$. The former is well defined since for any $a \in M^G$ and $g \in G$ we have
+\[
+  g\cdot f(a) = f(g\cdot a) = f(a) \in N^G.
+\]
+Thus $(-)^G$ and $(-)_G$ are functors $G$-\textsc{Mod} to $\textsc{Ab}$.
+
+\textbf{Proposition. Invariants and Adjoints.} \ The functors $\text{triv}(-)$, $(-)^G$ and $(-)_G$ are adjoint as follows
+\[
+  \begin{tikzcd}[column sep=5.5em, row sep=8.5em]
+    G-\textsc{Mod} \arrow[bend right=70, swap]{d}{(-)_G} \arrow[bend left=70]{d}{(-)^G} \\
+    \textsc{Ab} \arrow{u}{\text{triv}(-)}
+  \end{tikzcd}
+\]
+such that $(-)_G \dashv \text{triv}(-)$ and $\text{triv}(-) \dashv (-)^G$, i.e. coinvariants are left-adjoint to the triv and invariants are right adjoint to triv.
+
+\textbf{Proposition.} \ The invariant functor $(-)^G$ is additive and left exact, the coinvariant functor $(-)_G$ is additive and right exact.
+
+\textbf{Note.} \ For a fixed group $G$ the category $G$-\textsc{Mod} has enough projectives and injectives since it is isomorphic to $\mathbb{Z}G$-\textsc{Mod}.
+
+\textbf{Definition. Group (Co)Homology.} \ Let $G$ be a fixed group. We define the functors
+\[
+  H^n(G,-) ~:=~R^n(-)^G,\qquad H_n(G,-) ~:=~L_n(-)_G.
+\]
+
+\textbf{Proposition. Reinterpreting G-Modules.} \ We have natural isomorphisms
+\[
+  (-)_G ~\cong~\mathbb{Z}~\otimes_{\mathbb{Z}G}~-,\qquad (-)^G ~\cong~\text{Hom}_{\mathbb{Z}G-\textsc{Mod}}(\mathbb{Z},-)
+\]
+where $\mathbb{Z}$ appears as the (trivial) $\mathbb{Z}G$-module.

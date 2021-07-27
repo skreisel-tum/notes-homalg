@@ -1,0 +1,41 @@
+\section{The Universal Coefficient Theorem}
+
+In this section we work exclusively with $\mathbb{Z}$-modules, i.e. abelian groups, and drop the ring sup/subscripts.
+
+\textbf{Definition. (Co)Homology with Coefficients.} \ Let $A$ be an abelian group and $C_\bullet$ a chain complex of free abelian groups, i.e. free $\mathbb{Z}$-modules. We define
+\[
+  H_n(C_\bullet,A) ~:=~H_n(C_\bullet \otimes A)\quad \text{and}\quad H^n(C_\bullet, A) ~:=~H^n\big(\text{Hom}(C_\bullet, A)\big)
+\]
+to be the homology and cohomology with coefficents in $A$ respectively.
+
+\textbf{Theorem. Universal Coefficient Theorem.} \ For general right exact functors. Let $\mathcal{A}$ be an abelian category that has enough projectives and let $F: \mathcal{A} \to \mathcal{B}$ be right exact. Further, let $(C_\bullet,d_\bullet)$ be a chain complex in $\text{Ch}(\mathcal{A})$ such that $C_n$ and $\text{im}(d_n)$ are $F$-acyclic for all $n \in \mathbb{N}_0$ (or more generally $n \in \mathbb{Z}$).\\
+  Then we have a natural short exact sequence
+  \[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    0 \rar & F\big(H_n(C_\bullet)\big) \rar & H_n\big(F(C_\bullet)\big) \rar & L_1\big(F(H_{n-1}(C_\bullet))\big) \rar & 0
+  \end{tikzcd}
+    \]
+    for all $n \geq 1$. If all $\text{im}(d_n)$ are projective, then this short exact sequence splits, although not canonically.
+
+    \textbf{Theorem. Universal Coefficient Theorem.} \ Let $A \in \textsc{Ab}$ and $C_\bullet$ be a chain complex of free abelian groups. Then we have natural short exact sequences
+    \[
+  \begin{tikzcd}[column sep=2em, row sep=2em]
+    0 \rar & H_n(C_\bullet) \otimes A \rar & H_n((C_\bullet \otimes A) \rar & \text{Tor}_1\big(H_{n-1}(C_\bullet), A\big)\rar & 0
+  \end{tikzcd}
+      \]
+      and
+      \[
+  \begin{tikzcd}[column sep=2em, row sep=2em]
+    0 \rar & \text{Ext}^1\big(H_{n-1}(C_\bullet, A)\big)\rar & H^n\big( \text{Hom}(C_\bullet, A) \big) \rar & \text{Hom}\big( H_n(C_\bullet), A \big)\rar & 0
+  \end{tikzcd}
+      \]
+      that split non-canonically. In particular we have isomorphisms
+      \[
+ H_n(C_\bullet, A) ~~\cong~~ \big(H_n(C_\bullet) \otimes A\big) ~\oplus~ \text{Tor}_1\big(H_{n-1}(C_\bullet), A\big)
+      \]
+      and
+      \[
+  H^n(C_\bullet, A) ~~\cong~~\text{Hom}\big(H_n(C_\bullet), A) ~\oplus~ \text{Ext}^1\big(H_{n-1}(C_\bullet), A)\big).
+      \]
+
+      \textbf{Proof.} \ This follows from the general version of the theorem with $F = (-\otimes A): \textsc{Ab} \to \textsc{Ab}$ and $F = \text{Hom}(-,A): \textsc{Ab} \to \textsc{Ab}^{\text{op}}$. In particular we assume $C_\bullet$ to be free and thus projective and thus $F$-acyclic. Also $\text{im}(d_n)$ is free again as a subgroup of a free group.

@@ -1,6 +1,6 @@
 \section{Abelian Groups and Modules}
 
-\textbf{Note. Module.} \ Let $R$ be a ring with 1. We define the category of left $R$-modules $R$-$\textsc{Mod}$ to be abelian groups (written additively) with an additional left action of ring elements in $R$, written $r \cdot m$ such that
+\textbf{Note. R-Module.} \ Let $R$ be a ring with 1. We define the category of left $R$-modules $R$-$\textsc{Mod}$ to be abelian groups (written additively) with an additional left action of ring elements in $R$, written $r \cdot m$ such that
 \begin{enumerate}
   \item $r\cdot (x + y) = r \cdot x + r \cdot y$,
   \item $(r + s)\cdot x = r \cdot x + s \cdot y$,
@@ -16,20 +16,8 @@ Similarly we define $\textsc{Mod}$-$R$ of right $R$-modules. If $R$ is commutati
 \textbf{Note. Free Module.} \ An $R$-module $M$ is called free if it admits a basis, i.e. any $m$ can be written as a sum $m = r_1b_1 + \ldots + r_nb_n$ for elements $r_i \in R$ and $b_i \in M$ (may not be a finite sum).\\
 Equivalently, free modules are isomorphic to the direct product of copies of $R$ as $R$-modules.
 
-\textbf{Definition. $R$-Balanced Map.} \ Let $M \in \textsc{Mod-R}$ and $N \in \textsc{R-Mod}$ and $A \in \textsc{Ab}$. A map $\beta: M \times N \to A$ is called $R$-balanced if
-\begin{enumerate}
-  \item $\beta(a+b,x) = \beta(a,x) + \beta(b,x)$,
-  \item $\beta(a,x+y) = \beta(a,x) + \beta(a,y)$,
-  \item $\beta(ar,x) = \beta(a,rx)$.
-\end{enumerate}
-
-\textbf{Definition. Tensor Product.} \ Let $M \in \textsc{Mod-R}$ and $N \in \textsc{R-Mod}$. The tensor product of $M$ and $N$ over $R$ is an abelian group denoted $M \otimes_R N$ together with an $R$-balanced map denote $-\otimes-: M \times N \to M \otimes_R N$ such that for any $R$-balanced map $\beta: M \times N \to A$ to some abelian group $A$ there exists a unique group homomorphism $M \otimes_R N \to A$ such that the following diagram commutes:
+\textbf{Proposition. Hom-Set as R-Module.} \ Let $R$ be commutative and $M, N$ be $R$-modules. Then the set $\text{Hom}(N,M)$ carries the structure of a $R$-module by
 \[
-  \begin{tikzcd}[column sep=2.5em, row sep=3.5em]
-    M \times N \arrow{rr}{-\otimes_R -} \arrow[swap]{dr}{\beta} & & M \otimes_R N \arrow[dashed]{dl}{\exists} \\ & A &
-  \end{tikzcd}
-  \]
-
-  \textbf{Proposition. The Tensor Product Exists.} \ TODO
-
-  \textbf{Proposition. The Tensor Product is a Bifunctor.} \ 
+  (r\cdot f)(m) = f(r\cdot m)
+\]
+for all $r \in R$, $m \in M$ and $f: M \to N$. In particular the functor $\text{Hom}(-,-): R\textsc{-Mod} \to \text{Ab}$ now lands in $R$-\textsc{Mod}. We write $\text{Hom}_R(M,N)$ to emphasize the module structure.

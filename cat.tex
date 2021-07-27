@@ -13,8 +13,6 @@
 
 \textbf{Concrete Category.} \ A concrete category is a pair $(\mathcal{C}, U)$ where $\mathcal{C}$ is a category and $U: \mathcal{C} \to \textsc{Set}$ is a faithful functor.
 
-
-\newpage
 \subsection{Abstracting}
 
 The following notions lift the properties ``injective'' and ``surjective'' as well as ``(co)kernel'' and ``image'' to categories. In particular to categories where the objects do not form sets (or have elements).
@@ -122,7 +120,6 @@ the zero morphism.
   \end{tikzcd}
 \]
 
-\newpage
 \subsection{Abelian Categories}
 
 \textbf{Ab-Category} \ An Ab-Category is a category $\mathcal{C}$ that can be equipped with the folloing structure. For any objects $X$ and $Y$ the set $\text{Hom}(A,B)$ has an abelian group structure
@@ -173,7 +170,6 @@ that is compatbile with compoisiton, i.e
   \text{im}(f) ~=~\text{ker}\big(Y \stackrel{p}{\to}\text{coker}(f)\big)
 \]
 
-\newpage
 \subsection{Exact Sequences}
 
 In this subsection we work with abelian categories.
@@ -228,7 +224,6 @@ When can give two equivalent criteria for the above sequence to be split short e
 be a sequence such that $g \circ f = 0$. Then it is a short exact sequence if and only if $A \cong \text{ker}(g)$ and $C \cong \text{cokern}(f)$.
 
 
-\newpage
 \subsection{Additive and Exact Functors}
 
 \textbf{Additive Functor.} \ Let $\mathcal{A}$ and $\mathcal{B}$ be additive categories (Ab-categories is sufficient). A functor $F: \mathcal{A} \to \mathcal{B}$ is called an additive (or Ab-functor) if for any objects $A, A' \in \mathcal{A}$ the map
@@ -266,7 +261,6 @@ Equivalently, a left exact functor preserves the exactness of sequences
   0\longrightarrow A \longrightarrow B \longrightarrow C \longrightarrow 0.
 \]
 
-\newpage
 \subsection{Projective Objects}
 
 In this subsection we work with Abelian categories.
@@ -330,3 +324,49 @@ we obtain the dashed arrows as the composition of maps factoring in and out of t
 \[
   \text{Hom}_\mathcal{D}(F(-),-) ~\cong~ \text{Hom}_\mathcal{C}(-,G(-)).
 \]
+For $f \in \text{Hom}_\mathcal{D}(F(X),Y)$ we often write $\overline{f} \in \text{Hom}_\mathcal{C}(X,G(Y))$ to be the image under this isomorphism and vice versa.
+
+\textbf{Example. Free and Forgetful.} \ In many categories such as \textsc{Grp}, \textsc{Ab} and $R$-\textsc{Mod} we have an adjunction
+\[
+  \text{free}(-): \textsc{Set} \to \textsc{Grp} \qquad \dashv \qquad \text{forgetful}(-): \textsc{Grp} \to \textsc{Set}.
+\]
+To see this, note that specifying a map on a free group is the same as specifying a map (of sets) on the underlying set.
+
+\textbf{Example. Discrete and Forgetful and Coarse.} \ In \textsc{Top} this previous example works by replacing `free' with `discrete topology', a functor from \textsc{Set} to \textsc{Top}. Continuous maps of spaces with the disrecte topology are all possible (set) maps.\\
+TODO
+
+\textbf{Example. Diagonal and Product.} \ TODO
+
+\textbf{Example. Currying.} \ Let $S \in \textsc{Set}$ be fixed. Then the functors $\textsc{Set} \to \textsc{Set}$
+\[
+  - \times S \quad \vdash \quad \text{Hom}(S,-)
+\]
+are adjoint. To see this we show that for all $X, Y \in \textsc{Set}$ we have a natural isomorphism
+\[
+  \text{Hom}(X \times S, Y) ~\cong~ \text{Hom}(X, \text{Hom}(S,Y)).
+\]
+But it is clear, that specifying a map $f: X \times S \to Y$ is the same as specifying a map $g: X \to (S \to Y)$. In particular we map
+\[
+  f \mapsto \big(x \mapsto f(x, -)\big),\qquad g \mapsto \big((x,s) \mapsto g(x)(s)\big).
+\]
+
+\textbf{Definition. Unit.} \ Let $F: \mathcal{C} \to \mathcal{D}$ and $G: \mathcal{D} \to \mathcal{C}$ such that $F \dashv G$. Then for each $X \in \mathcal{C}$ we have
+\[
+  1_{F(X)} ~\in~ \text{Hom}_\mathcal{D}(F(X),F(X)) ~\cong~ \text{Hom}_\mathcal{C}\big(X, (G \circ F)(X)\big)
+\]
+by the natural isomorphism of the adjunction and we the image of $1_{F(X)}$ under this isomoprhism is given by $\eta_X: X \to (G\circ F)(X)$ produces a natural transformation
+\[
+  \eta: 1_\mathcal{C} \to G\circ F
+\]
+that we call unit of the adjunction. We can write a morphism $\alpha: F(X) \to Y$ under the adjunction as
+\[
+  \overline{\alpha} ~=~ \overline{\alpha \circ 1_{F(X)}} ~=~ G \circ \alpha \circ \overline{1_{F(X)}} ~=~ G \circ \alpha \circ \eta_X.
+\]
+
+\textbf{Proposition. Propoerties of Functors in Adjunction.} \ Let $F: \mathcal{C} \to \mathcal{D}$ and $G: \mathcal{D} \to \mathcal{C}$ such that $F \dashv G$. Then
+\begin{enumerate}
+  \item $G$ preserves products, terminal objects and pullbacks,
+  \item $F$ preserves coproducts, initial objects and pushouts,
+  \item if $\mathcal{C}$ and $\mathcal{D}$ are additive, then $F$ and $G$ are additive functors,
+  \item if $\mathcal{C}$ and $\mathcal{D}$ are abelian, then $F$ is right exact and $G$ is left exact.
+\end{enumerate}

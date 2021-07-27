@@ -97,11 +97,6 @@ We also write $L_iF$ for $F_i$.
 
 \textbf{Definition. Right Derived Functor.} \ Similarly, we define the right derived functor of a left exact functor $F: \mathcal{A} \to \mathcal{B}$ whenever $\mathcal{A}$ has enough injectives. Instead of a projective resolution we use an injective resolution to obtain a cochain complex, apply cohomology and obtain the right derived functor denote by $R^iF$.
 
-\textbf{Definition. Ext.} \ Let $\mathcal{A}$ be an abelian category. The functor $\text{Hom}(-,-): \mathcal{A}^\text{op} \times \mathcal{A} \to \textsc{Ab}$ is left exact in both arguments. Let $B \in \mathcal{A}$ be fixed. We define
-\[
-  \text{Ext}^i(-,B) ~:=~R^i\text{Hom}(-,B) ~=~H^i(-) \circ K(-) \circ P_\bullet(-).
-\]
-Note that we use a projective resolution for the first argument of $\text{Hom}(-,-)$ since a projective resolution in $\mathcal{A}$ is an injective resolution in $\mathcal{A}^\text{op}$ as required.
 
 \subsection{(Universal) Delta Functors}
 
@@ -295,9 +290,16 @@ To show this, we show that (a) coeffacable $\delta$-functors are universal and (
 
 \textbf{Definition. Coeffaceable Delta Functor.} \ Let $T: \mathcal{A} \to \mathcal{B}$ be a $\delta$-functor. It is called coeffacable if for any object $A \in \mathcal{A}$ there exists $P \in \mathcal{A}$ and a epimorphism $u: P \twoheadrightarrow A$ such that $T_n(u) = 0$ for all $n \geq 1$ (but not necessarily for $n = 0$).
 
-\textbf{Note.} \ Directly from this definition we see that the left derived functor $L_nF$ of some right exact functor $F: \mathcal{A} \to \mathcal{B}$ is coeffacable:\\
-Given any $A \in \mathcal{A}$ we find a projective object $P \in \mathcal{A}$ such that $P \twoheadrightarrow A$. Since $L_nF(P) = 0$ for any projective object and $i \neq 0$, the claim follows.
-
 \textbf{Proposition. Coeffacable Delta Functors are Universal.} \ Let $T: \mathcal{A} \to \mathcal{B}$ be a coeffaceable $\delta$-functor. Then it is universal, i.e. for any $\delta$-functor $S: \mathcal{A} \to \mathcal{B}$ and natural transformation $\alpha_0: S_0 \to T_0$ we can extend $\alpha_0$ uniquely to a map of $\delta$-functors.
 
 \textbf{Proof.} \
+
+\textbf{Proposition. Left Derived Functor is Coeffaceable.} \ The left derived functor $L_nF$ of any right exact functor $F: \mathcal{A} \to \mathcal{B}$ is coeffacable.
+
+\textbf{Proof.} \ Given any $A \in \mathcal{A}$ we find a projective object $P \in \mathcal{A}$ such that $P \twoheadrightarrow A$. Applying $L_iF$ to $P$ we find the projective resolution of $P$ by
+\[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    0 \rar & P \arrow[]{rr}{\cong} & & P \rar & 0
+  \end{tikzcd}
+\]
+that is concentrated in degree 0 and thus has zero homology in all degress $n \geq 1$.

@@ -1,5 +1,11 @@
-\section{Extensions}
+\section{Ext and Extensions}
 
+
+\textbf{Definition. Ext.} \ Let $\mathcal{A}$ be an abelian category. The functor $\text{Hom}(-,-): \mathcal{A}^\text{op} \times \mathcal{A} \to \textsc{Ab}$ is left exact in both arguments. Let $B \in \mathcal{A}$ be fixed. We define
+\[
+  \text{Ext}^i(-,B) ~:=~R^i\text{Hom}(-,B) ~=~H^i(-) \circ K(-) \circ P_\bullet(-).
+\]
+Note that we use a projective resolution for the first argument of $\text{Hom}(-,-)$ since a projective resolution in $\mathcal{A}$ is an injective resolution in $\mathcal{A}^\text{op}$ as required. \\ As a derived functor of $\text{Hom}(-,B)$ is $\text{Ext}(-,B)$ a universal cohomological delta functor.
 
 \textbf{Definition. Extensions.} \ Fix two objects $A, C$ and let $B$ and $B'$ be extensions of $C$ by $A$. Then we say these two extensions are equivalent if there exists an isomorphism $\varphi$ such that
 \[
@@ -26,5 +32,5 @@ yields functors $\text{Ext}(-,C)$ and $\text{Ext}(A,-)$.
     & & 0 \arrow{ur} & & 0 & &
   \end{tikzcd}
 \]
-is exact everywhere.
+is exact.
 
