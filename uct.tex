@@ -39,3 +39,126 @@ to be the homology and cohomology with coefficents in $A$ respectively.
       \]
 
       \textbf{Proof.} \ This follows from the general version of the theorem with $F = (-\otimes A): \textsc{Ab} \to \textsc{Ab}$ and $F = \text{Hom}(-,A): \textsc{Ab} \to \textsc{Ab}^{\text{op}}$. In particular we assume $C_\bullet$ to be free and thus projective and thus $F$-acyclic. Also $\text{im}(d_n)$ is free again as a subgroup of a free group.
+
+      \textbf{Proof of the UCT.} \ We are given a right exact functor $F: \mathcal{A} \to \mathcal{B}$ and a chain complex $C_\bullet$ that is $F$-acyclic in all degrees. The strategy to proof the UCT is as follows
+      \begin{enumerate}
+        \item Construct a short exact sequence of chain complexes
+          \[
+          \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+            0 \rar &
+            Z_\bullet \arrow[hook]{r}{} &
+            C_\bullet \arrow[two heads]{r}{} &
+            B_{\bullet - 1} \rar &
+            0
+          \end{tikzcd}
+          \]
+          where $Z_\bullet$ and $B_\bullet$ have $d \equiv 0$.
+        \item Apply $F$ to this sequence to obtain a short exact sequence
+          \[
+          \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+            0 \rar &
+            FZ_\bullet \arrow[hook]{r}{} &
+            FC_\bullet \arrow[two heads]{r}{} &
+            FB_{\bullet - 1} \rar &
+            0
+          \end{tikzcd}
+          \]
+          in $\text{Ch}(\mathcal{B})$.
+        \item Apply the homology functor $H_n$ to obtain the long exact sequence for homology
+  \[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    &
+    &
+    ~~\cdots~~\rar \ar[draw=none]{d}[name=X, anchor=center]{} &
+    H_{n+1}(FB_{\bullet -1}) \ar[rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east)
+                                        |- (X.center) \tikztonodes
+                                        -| ([xshift=-2ex]\tikztotarget.west)
+                                        -- (\tikztotarget)}]{dll}[at end]{\delta_{n+1}}
+  \\
+  &
+    H_n(FZ_\bullet) \rar &
+    H_n(FC_\bullet)\rar \ar[draw=none]{d}[name=Y, anchor=center]{} &
+    H_n(FB_{\bullet - 1}) \ar[rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east)
+                                        |- (Y.center) \tikztonodes
+                                        -| ([xshift=-2ex]\tikztotarget.west)
+                                        -- (\tikztotarget)}]{dll}[at end]{\delta_n}
+  \\
+  &
+    H_{n-1}(FZ_\bullet) \rar &
+    ~~\cdots &
+  \end{tikzcd}
+    \]
+  \item Since $Z_\bullet$ and $B_\bullet$ have zero differential (which is still the case after applying $F$) we have
+  \[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    &
+   &
+    ~~\cdots~~\rar \ar[draw=none]{d}[name=X, anchor=center]{} &
+    FB_n\ar[rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east)
+                                        |- (X.center) \tikztonodes
+                                        -| ([xshift=-2ex]\tikztotarget.west)
+                                        -- (\tikztotarget)}]{dll}[at end]{\delta_{n+1}}
+  \\
+  &
+    FZ_n \rar &
+    H_n(FC_\bullet)\rar \ar[draw=none]{d}[name=Y, anchor=center]{} &
+    FB_{n-1}\ar[rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east)
+                                        |- (Y.center) \tikztonodes
+                                        -| ([xshift=-2ex]\tikztotarget.west)
+                                        -- (\tikztotarget)}]{dll}[at end]{\delta_{n}}
+  \\
+  &
+    FZ_{n-1}\rar &
+    ~~\cdots &
+  \end{tikzcd}
+    \]
+  \item From the long exact sequence we obtain a short exact sequence
+    \[
+          \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+            0 \rar &
+            \text{coker}(\delta_{n+1}) \rar &
+            H_n(FC_\bullet) \rar &
+            \text{ker}(\delta_n) \rar &
+            0
+          \end{tikzcd}
+    \]
+  \item We show that $\delta = F(i)$.
+  \item We have a short exact sequence
+    \[
+          \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+            0 \rar &
+            B_n \arrow[hook]{r}{i} &
+            Z_n \arrow[two heads]{r} &
+            H_n(C_\bullet) \rar &
+            0
+          \end{tikzcd}
+    \]
+    which is a $F$-acyclic resolution of $H_n(C_\bullet)$. Applying $F$ yields the long exact sequence for the left derived functor
+    \[
+          \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+   &
+    ~~\cdots~~\rar \ar[draw=none]{d}[name=X, anchor=center]{} &
+            L_1(F)(H_{n}C_\bullet)\ar[rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east)
+                                        |- (X.center) \tikztonodes
+                                        -| ([xshift=-2ex]\tikztotarget.west)
+                                        -- (\tikztotarget)}]{dll}[at end]{}
+                                        &
+  \\
+            FB_{n-1} \arrow{r}{Fi} &
+    FZ_{n-1} \rar &
+    FH_n(C_\bullet) \rar &
+            0
+          \end{tikzcd}
+    \]
+  \item But then
+    \[
+    \text{coker}(Fi) ~\cong~ H_n(FC_\bullet),\qquad \text{ker}(Fi) ~\cong~ L_1(F)(H_nC_\bullet)
+    \]
+  \item For the kernel we have to shift one degree down and substituting in (5) yields
+    \[
+  \begin{tikzcd}[column sep=2.5em, row sep=2.5em]
+    0 \rar & F(H_n(C_\bullet) \rar & H_n(FC_\bullet) \rar & L_1(F)(H_{n-1}(C_\bullet)) \rar & 0
+  \end{tikzcd}
+    \]
+    as desired.
+      \end{enumerate}

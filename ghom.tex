@@ -87,3 +87,94 @@ such that $(-)_G \dashv \text{triv}(-)$ and $\text{triv}(-) \dashv (-)^G$, i.e. 
   (-)_G ~\cong~\mathbb{Z}~\otimes_{\mathbb{Z}G}~-,\qquad (-)^G ~\cong~\text{Hom}_{\mathbb{Z}G-\textsc{Mod}}(\mathbb{Z},-)
 \]
 where $\mathbb{Z}$ appears as the (trivial) $\mathbb{Z}G$-module.
+
+\textbf{Proposition. Reinterpreting Group (Co)Homology.} \ We have isomorphisms
+\[
+  R^n(-)^G ~=~H^n(G,-) ~\cong~\text{Ext}_{\mathbb{Z}G}^n(\mathbb{Z},-)
+\]
+and
+\[
+  L_n(-)_G ~=~ H_n(G,-) ~\cong~\text{Tor}^{\mathbb{Z}G}_n(\mathbb{Z},-)
+\]
+where $\mathbb{Z}$ is the tirival $\mathbb{Z}G$-module.
+
+To compute Ext and Tor we can thus find a projective resolution of $\mathbb{Z}$ as a $\mathbb{Z}G$-module independent of the input in the second variable.
+
+\textbf{Proposition. The Bar Resolution.} \ Let $n \geq 0$ and let $G$ be a fixed group. We define the free $\mathbb{Z}G$-module
+\[
+  B_n ~:=~ \bigoplus_{(g_i) \in (G - \{1 \})^n}\mathbb{Z}G[g_1|\ldots |g_n]
+\]
+where $[g_1|\ldots |g_n]$ denotes the generator corresponding to the $n$-tuple $(g_i)$. We further define
+\[
+  \begin{aligned}
+    d_n: B_n ~\to~ B_{n-1},\qquad [g_1|\ldots |g_n] ~\mapsto~ &g_1[g_2|\ldots|g_n]\\
+    & - [g_1g_2|\ldots |g_n]\\
+    & \pm ~\cdots\\
+    & + (-1)^{n-1} [g_1|\ldots|g_{n-1}g_n] \\
+    & + (-1)^n [g_1|\ldots|g_{n-1}].
+  \end{aligned}
+\]
+Then $(B_\bullet,d)$ is a chain complex, called the bar complex of $G$.
+
+\textbf{Proposition. Resolution via Bar Complex.} \ We have a free resolution
+\[
+  \cdots \longrightarrow B_2 \longrightarrow B_1 \longrightarrow B_0 \stackrel{\varepsilon}{\longrightarrow} \mathbb{Z} \longrightarrow 0
+\]
+of the trivial left $\mathbb{Z}G$-module $\mathbb{Z}$.
+
+\textbf{Proposition. Computing Group Homology.} \ Let $G$ be a group, $A$ a $G$-module and $B_\bullet$ the bar resolution of $G$. Then
+\[
+  H_n(G,A) ~\cong~H_n(B_\bullet \otimes_{\mathbb{Z}G} A),\qquad H^n(G,A) ~\cong~ H^n(\text{Hom}_{\mathbb{Z}G}(B_\bullet, A)).
+\]
+
+\textbf{Proposition. Interpreting $H^1(G,A)$.} \ Let $G$ be a group and $A$ a $G$-module. A map $\varphi: G \to A$ such that
+\[
+  \varphi(1) = 0,\qquad \varphi(gh) = \varphi(g) + g\cdot \varphi(h)
+\]
+for all $g,h \in G$ is called crossed homomorphism. We called crossed homomorphisms of the form $g \mapsto g\cdot a - a$ for some $a \in A$ principal. We have
+\[
+  H_1(G,A) ~\cong~ \frac{\{ \text{crossed homomorphisms}~G \to A \}}{\{\text{principal crossed homomorphisms}~G\to A\}}.
+\]
+If $A$ is the trivial $G$-module then we recover group homomorphisms and then principal crossed homomorphisms are the zero map. Thus in this case $H_1(G,A) \cong\text{Hom}_{\text{Grp}}(G,A)$.
+
+\textbf{Proposition. (Split) Group Extensions.} \ Let $G$ be a fixed group and $A$ an abelian group. We define an extension of $G$ by $A$ to be a short exact sequence of groups
+\[
+  0 \longrightarrow A \stackrel{i}{\longrightarrow} E \stackrel{\pi}{\longrightarrow} G \longrightarrow 1
+\]
+where $\pi$ is surjective and $A \cong \text{ker}(\pi) \lhd E$ is a normal subgroup. We call such a sequence split if $\pi$ admits a section $s: G \to E$ such that $\pi \circ s = 1_G$. Note that this is not equivalent to the existence of a retract of $i$.
+
+Given such a short exact sequence, we can give $A$ a $G$-module structure by 
+\[
+  g\cdot a ~=~ i^{-1}(e~i(a)~e^{-1})
+\]
+for any $e \in \pi^{-1}(g)$. This does not depend on the choice of preimage. In the context of $G$-modules we define an extension of $G$ by $A$ to be a short exact sequence
+\[
+  0 \longrightarrow A \stackrel{}{\longrightarrow} E \stackrel{}{\longrightarrow} G \longrightarrow 1
+\]
+such that the given $G$-module structure agrees with the one induced by the short exact sequence.
+
+\textbf{Proposition. Semi-Direct Product and Extensions.} \ Let $G$ be a fixed group and $A$ be a $G$-module. We define $A \rtimes G$ to be a group with
+\[
+  A \times G,\qquad (a,g)\cdot(b,h) = (a + g\cdot h, gh).
+\]
+We have a split group extension of $G$ by $A$
+\[
+  0 \longrightarrow A \stackrel{i}{\longrightarrow} A \rtimes G \stackrel{\pi}{\longrightarrow} G \longrightarrow 1
+\]
+with $i(a) = (a,1)$, $\pi(a,g) = g$ and a section of $\pi$ given by $s(g) = (0,g)$. Note that this short exact sequence depends on the $G$-module structure of $A$.
+
+\textbf{Proposition. Extensions and Equivalences.} \ An equivalence of group extensions is an isomorphism $E \cong E'$ such that the diagram commutes. Fix an extension $\eta$. We have a bijection of sets
+\[
+  \{ \text{equivalences}~\eta\cong \eta_A \} ~\stackrel{1:1}{\longleftrightarrow}~\{ \text{splittings}~s~\text{of}~\eta \} ~\stackrel{1:1}{\longleftrightarrow}~\text{Aut}(\eta_A).
+\]
+
+\textbf{Note.} \ For abelian groups $A$ and $B$ and
+\[
+  \eta:\qquad 0 \longrightarrow A \longrightarrow A \oplus B \longrightarrow B \longrightarrow 0
+\]
+we have $\text{Aut}(\eta) \cong \text{Hom}_{\text{Ab}}(B,A)$ (cf. matrices with a homomorphism $\varphi: B \to A$ in the upper right corner).\\
+The above proposition for group extensios is analogous. Here isomorphisms between $A \rtimes G \to A \rtimes G$ are given by maps $\sigma_\varphi(a,g) = (a+g\cdot \varphi(a),g)$ for a crossed homomorphism $\varphi: G \to A$. Here we get
+\[
+  \text{Aut}(\eta_A) ~\cong~\{ \text{crossed homomorphisms}~G \to A \}
+\]
+and we recover $H^1(G,A)$ to be group extensions up to the ones which are trivial, namely those for principal crossed homomorphisms.
